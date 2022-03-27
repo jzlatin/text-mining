@@ -166,7 +166,7 @@ def most_common_HF(hist_HF, excluding_stopwords=False):
 
     returns: list of (frequency, word) pairs
     """
-    t_HF = []
+    HF_lst = []
     stopwords = process_file_HF('data/stopwords.txt')
 
     stopwords = list(stopwords.keys())
@@ -175,9 +175,9 @@ def most_common_HF(hist_HF, excluding_stopwords=False):
             if word in stopwords:
                 continue
         else:
-            t_HF.append((freq, word))
-        t_HF.sort(reverse=True)
-    return t_HF
+            HF_lst.append((freq, word))
+        HF_lst.sort(reverse=True)
+    return HF_lst
 
 
 def print_most_common_HF(hist_HF, num=10):
@@ -185,9 +185,9 @@ def print_most_common_HF(hist_HF, num=10):
     hist: histogram (map from word to frequency)
     num: number of words to print
     """
-    t_HF = most_common_HF(hist_HF)
+    HF_lst = most_common_HF(hist_HF)
     print('The most common words on the HelloFresh subreddit are:')
-    for freq, word in t_HF[:num]:
+    for freq, word in HF_lst[:num]:
         print(word, '\t', freq)
 
 
@@ -199,7 +199,7 @@ def most_common_BA(hist_BA, excluding_stopwords=False):
 
     returns: list of (frequency, word) pairs
     """
-    t_BA = []
+    BA_lst = []
     stopwords = process_file_HF('data/stopwords.txt')
 
     stopwords = list(stopwords.keys())
@@ -208,9 +208,9 @@ def most_common_BA(hist_BA, excluding_stopwords=False):
             if word in stopwords:
                 continue
         else:
-            t_BA.append((freq, word))
-        t_BA.sort(reverse=True)
-    return t_BA
+            BA_lst.append((freq, word))
+        BA_lst.sort(reverse=True)
+    return BA_lst
 
 
 def print_most_common_BA(hist_BA, num=10):
@@ -218,9 +218,9 @@ def print_most_common_BA(hist_BA, num=10):
     hist: histogram (map from word to frequency)
     num: number of words to print
     """
-    t_BA = most_common_BA(hist_BA)
+    BA_lst = most_common_BA(hist_BA)
     print('The most common words on the BlueApron subreddit are:')
-    for freq, word in t_BA[:num]:
+    for freq, word in BA_lst[:num]:
         print(word, '\t', freq)
 
 
@@ -232,7 +232,7 @@ def most_common_HC(hist_HC, excluding_stopwords=False):
 
     returns: list of (frequency, word) pairs
     """
-    t_HC = []
+    HC_lst = []
     stopwords = process_file_HC('data/stopwords.txt')
 
     stopwords = list(stopwords.keys())
@@ -241,9 +241,9 @@ def most_common_HC(hist_HC, excluding_stopwords=False):
             if word in stopwords:
                 continue
         else:
-            t_HC.append((freq, word))
-        t_HC.sort(reverse=True)
-    return t_HC
+            HC_lst.append((freq, word))
+        HC_lst.sort(reverse=True)
+    return HC_lst
 
 
 def print_most_common_HC(hist_HC, num=10):
@@ -251,9 +251,9 @@ def print_most_common_HC(hist_HC, num=10):
     hist: histogram (map from word to frequency)
     num: number of words to print
     """
-    t_HC = most_common_HC(hist_HC)
+    HC_lst = most_common_HC(hist_HC)
     print('The most common words on the HomeChef subreddit are:')
-    for freq, word in t_HC[:num]:
+    for freq, word in HC_lst[:num]:
         print(word, '\t', freq)
 
 
@@ -344,10 +344,10 @@ def main():
     print('\n\nTotal number of words in the HelloFresh subreddit:', total_words_HF(hist_HF))
     print('Number of different words in the HelloFresh subreddit:', different_words_HF(hist_HF))
 
-    t_HF = most_common_HF(hist_HF, excluding_stopwords=False)
+    HF_lst = most_common_HF(hist_HF, excluding_stopwords=False)
 
     print('The most common words in the HelloFresh subreddit are:')
-    for freq, word in t_HF[0:20]:
+    for freq, word in HF_lst[0:20]:
         print(word, '\t', freq)
 
     hist_HC = process_file_HC('data/HomeChef.txt', skip_title=True)
@@ -355,10 +355,10 @@ def main():
     print('Total number of words in the HomeChef subreddit:', total_words_HC(hist_HC))
     print('Number of different words in the HomeChef subreddit:', different_words_HC(hist_HC))
 
-    t_HC = most_common_HC(hist_HC, excluding_stopwords=False)
+    HC_lst = most_common_HC(hist_HC, excluding_stopwords=False)
 
     print('The most common words in the HomeChef subreddit are:')
-    for freq, word in t_HC[0:20]:
+    for freq, word in HC_lst[0:20]:
         print(word, '\t', freq)
 
     words = process_file_HF('data/words.txt')
@@ -370,10 +370,10 @@ def main():
     print('Total number of words in the BlueApron subreddit:', total_words_BA(hist_BA))
     print('Number of different words in the BlueApron subreddit:', different_words_BA(hist_BA))
 
-    t_BA = most_common_BA(hist_BA, excluding_stopwords=False)
+    BA_lst = most_common_BA(hist_BA, excluding_stopwords=False)
 
     print('The most common words in the BlueApron subreddit are:')
-    for freq, word in t_BA[0:20]:
+    for freq, word in BA_lst[0:20]:
         print(word, '\t', freq)
 
     diff_HF = subtract(hist_HF, words)
